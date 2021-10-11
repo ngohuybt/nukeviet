@@ -11,7 +11,7 @@
 if (!defined('NV_IS_FILE_ADMIN')) die('Stop!!!');
 
 $array['parentid'] = $catid = $array['type'] = $array['from_signer'] = $array['from_depid'] = 0;
-$arr_de['parentid'] = $array['statusid'] = $deid = $id = 0;
+$arr_de['parentid'] = $array['statusid'] = $array['receipt_sentid'] = $deid = $id = 0;
 $arr_imgs = $arr_img = $list_de = $lis = $listde = array();
 $array['from_time'] = $array['date_iss'] = $array['date_first'] = $array['date_die'] = $check = $to_person = $to_recipient = $error = '';
 $array['groups_view'] = 6;
@@ -27,6 +27,7 @@ if ($num > 0) {
     $array = $result->fetch();
     $array['parentid'] = $array['catid'];
     $array['statusid'] = $array['status'];
+    $array['receipt_sentid'] = $array['receipt_sent'];
     $arr_imgs = $arr_img = explode(',', $array['file']);
 
     $sql1 = "SELECT * FROM " . NV_PREFIXLANG . "_" . $module_data . "_de_do WHERE doid=" . $id;
@@ -59,6 +60,7 @@ if ($nv_Request->isset_request('submit', 'post')) {
     $array['from_signer'] = $nv_Request->get_int('from_signer', 'post', 0);
     $array['content'] = $nv_Request->get_string('content', 'post', '');
     $array['statusid'] = $nv_Request->get_int('statusid', 'post', 0);
+    $array['receipt_sentid'] = $nv_Request->get_int('receipt_sentid', 'post', 0);
     $arr_img = $nv_Request->get_typed_array('fileupload', 'post', 'string');
     $array['from_time'] = $nv_Request->get_title('from_time', 'post', '', '');
 
@@ -165,7 +167,8 @@ if ($nv_Request->isset_request('submit', 'post')) {
 					date_first = " . $array['date_first'] . ",
 					date_die = " . $array['date_die'] . ",
 					groups_view = " . $array['groups_view'] . ",
-					status = " . $array['statusid'] . " WHERE id = " . $id;
+					status = " . $array['statusid'] . ",
+                    receipt_sent = " . $array['receipt_sentid'] . " WHERE id = " . $id;
 
                 if ($db->query($sql)) {
                     $db->query("DELETE FROM " . NV_PREFIXLANG . "_" . $module_data . "_de_do WHERE doid =" . $id);
@@ -209,7 +212,8 @@ if ($nv_Request->isset_request('submit', 'post')) {
 					" . $array['date_die'] . ",
 					" . $db->quote($array['to_org']) . ",
 					" . $db->quote($array['groups_view']) . ",
-					" . $array['statusid'] . ", 0 )";
+					" . $array['statusid'] . ",
+					" . $array['receipt_sentid'] . ", 0 )";
 
                 $array['id'] = $db->insert_id($sql);
 
@@ -279,6 +283,14 @@ foreach ($arr_status as $a) {
     );
 }
 
+foreach ($arr_receipt_sent as $a) {
+    $ars[] = array(
+        'id' => $a['id'],
+        'name' => $a['name'],
+        'selected' => $a['id'] == $array['receipt_sentid'] ? " selected=\"selected\"" : ""
+    );
+}
+
 $xtpl = new XTemplate("add_document.tpl", NV_ROOTDIR . "/themes/" . $global_config['module_theme'] . "/modules/" . $module_file);
 $xtpl->assign('LANG', $lang_module);
 $xtpl->assign('NV_BASE_ADMINURL', NV_BASE_ADMINURL);
@@ -335,6 +347,11 @@ foreach ($listdes as $de) {
 foreach ($as as $a) {
     $xtpl->assign('LISTSTATUS', $a);
     $xtpl->parse('inter.statusid');
+}
+
+foreach ($ars as $a) {
+    $xtpl->assign('LISTRECEIPTSENT', $a);
+    $xtpl->parse('inter.receipt_sentid');
 }
 
 $groups_view = explode(',', $array['groups_view']);

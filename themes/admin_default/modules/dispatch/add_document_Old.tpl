@@ -118,19 +118,7 @@
 					<!-- BEGIN: statusid -->
 					<option value="{LISTSTATUS.id}"{LISTSTATUS.selected}>{LISTSTATUS.name}</option>
 					<!-- END: statusid -->
-				</select>
-				</td>
-			</tr>
-			
-			<tr>
-				<td>{LANG.dis_receipt_sent}</td>
-				<td>
-				<select class="form-control w200" name="receipt_sentid">
-					<!-- BEGIN: receipt_sentid -->
-					<option value="{LISTRECEIPTSENT.id}"{LISTRECEIPTSENT.selected}>{LISTRECEIPTSENT.name}</option>
-					<!-- END: receipt_sentid -->
-				</select>
-				</td>
+				</select></td>
 			</tr>
 
 			<tr>

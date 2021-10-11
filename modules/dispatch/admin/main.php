@@ -193,6 +193,7 @@ while ($row = $query2->fetch()) {
         'link_cat' => NV_BASE_ADMINURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&amp;" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;catid=" . $row['catid'], //
         'from_time' => nv_date('d.m.Y', $row['from_time']), //
         'status' => $arr_status[$row['status']]['name'], //
+        'receipt_sent' => $arr_receipt_sent[$row['receipt_sent']]['name'], //
         'link_detail' => nv_url_rewrite(NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&' . NV_NAME_VARIABLE . "=" . $module_name . "&amp;op=detail/" . $row['alias'], true),
         'edit' => $edit
     );

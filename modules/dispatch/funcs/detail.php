@@ -35,6 +35,7 @@ if (isset($array_op[1]) and preg_match("/^([a-zA-Z0-9\-\_]+)\-([\d]+)$/", $array
 
     $row['cat'] = $listcats[$row['catid']]['title'];
     $row['status'] = $arr_status[$row['status']]['name'];
+    $row['receipt_sent'] = $arr_receipt_sent[$row['receipt_sent']]['name'];
     if ($row['from_time'] != 0) {
         $row['from_time'] = nv_date('d.m.Y', $row['from_time']);
     } else {

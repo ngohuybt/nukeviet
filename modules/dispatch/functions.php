@@ -10,7 +10,7 @@
 
 if (!defined('NV_SYSTEM')) die('Stop!!!');
 
-global $arr_type, $arr_status;
+global $arr_type, $arr_status, $arr_receipt_sent;
 
 $arr_status = array(
     '0' => array(
@@ -24,6 +24,17 @@ $arr_status = array(
     '2' => array(
         'id' => '2',
         'name' => $lang_module['dis_sta2']
+    )
+);
+
+$arr_receipt_sent = array(
+    '0' => array(
+        'id' => '0',
+        'name' => $lang_module['dis_receipt']
+    ),
+    '1' => array(
+        'id' => '1',
+        'name' => $lang_module['dis_sent']
     )
 );
 

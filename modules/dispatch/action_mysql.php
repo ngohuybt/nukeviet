@@ -33,7 +33,7 @@ $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_
  UNIQUE KEY alias (alias),
  KEY weight (weight)
 ) ENGINE=MyISAM;";
-
+// QLCV
 $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_cat (
  id mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
  parentid mediumint(8) unsigned NOT NULL DEFAULT '0',
@@ -68,7 +68,7 @@ $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_
  status tinyint(1) unsigned NOT NULL DEFAULT '0',
  PRIMARY KEY (id)
  ) ENGINE=MyISAM;";
-
+//QLCV
 $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_" . $module_data . "_document (
  id mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
  type mediumint(8) unsigned NOT NULL DEFAULT '0',
@@ -88,6 +88,7 @@ $sql_create_module[] = "CREATE TABLE " . $db_config['prefix'] . "_" . $lang . "_
  to_org mediumtext NOT NULL,
  groups_view varchar(255) NOT NULL,
  status tinyint(1) unsigned NOT NULL DEFAULT '0',
+ receipt_sent tinyint(1) unsigned NOT NULL DEFAULT '0',
  view int(11) unsigned NOT NULL DEFAULT '0',
  PRIMARY KEY (id),
  UNIQUE KEY alias (alias),
