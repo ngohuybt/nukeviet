@@ -7,6 +7,9 @@
         <div class="panel-body">
             <h2 class="text-center margin-bottom-lg">{LANG.login}</h2>
             {FILE "login_form.tpl"}
+            <div class="text-center margin-top-lg">
+                <!-- BEGIN: navbar --><a href="{NAVBAR.href}" class="margin-right-lg"><em class="fa fa-caret-right margin-right-sm"></em>{NAVBAR.title}</a><!-- END: navbar -->
+            </div>
         </div>
     </div>
 </div>

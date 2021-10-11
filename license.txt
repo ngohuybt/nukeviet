@@ -1,7 +1,5 @@
 WordPress - Web publishing software
 
-test commit
-
 Copyright 2011-2021 by the contributors
 
 This program is free software; you can redistribute it and/or modify

@@ -1,5 +1,5 @@
 <form action="{USER_LOGIN}" method="post" onsubmit="return login_validForm(this);" autocomplete="off" novalidate<!-- BEGIN: recaptcha3 --> data-recaptcha3="1"<!-- END: recaptcha3 -->>
-    <div class="nv-info margin-bottom" data-default="{GLANG.logininfo}">{GLANG.logininfo}</div>
+    <!-- huynnp div class="nv-info margin-bottom" data-default="{GLANG.logininfo}">{GLANG.logininfo}</div -->
     <div class="form-detail">
         <div class="form-group loginstep1">
             <div class="input-group">
@@ -57,8 +57,8 @@
         <div class="text-center margin-bottom-lg">
             <!-- BEGIN: header --><input name="nv_header" value="{NV_HEADER}" type="hidden" /><!-- END: header -->
             <!-- BEGIN: redirect --><input name="nv_redirect" value="{REDIRECT}" type="hidden" /><!-- END: redirect -->
+			<button class="bsubmit btn btn-primary" type="submit">{GLANG.loginsubmit}</button>
             <input type="button" value="{GLANG.reset}" class="btn btn-default" onclick="validReset(this.form);return!1;" />
-            <button class="bsubmit btn btn-primary" type="submit">{GLANG.loginsubmit}</button>
            </div>
 
         <!-- BEGIN: allowuserreg2_form -->

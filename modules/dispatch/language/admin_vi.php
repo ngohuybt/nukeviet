@@ -81,6 +81,8 @@ $lang_module['dis_date_die'] = 'Ngày hết hiệu lực';
 $lang_module['dis_file'] = 'Công văn đính kèm';
 $lang_module['dis_dis'] = 'Nội dung';
 $lang_module['dis_status'] = 'Trạng thái';
+//huynnp
+$lang_module['dis_receipt_sent'] = 'Công văn đến / đi';
 $lang_module['dis_person'] = 'Người ký';
 $lang_module['dis_de'] = 'Phòng ban nhận';
 $lang_module['dis_sta0'] = 'Chưa xử lý';

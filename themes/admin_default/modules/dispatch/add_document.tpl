@@ -120,6 +120,13 @@
 					<!-- END: statusid -->
 				</select></td>
 			</tr>
+			
+			<tr>
+				<td>{LANG.dis_receipt_sent}</td>
+				<td>
+
+				</td>
+			</tr>
 
 			<tr>
 				<td >{LANG.dis_de}</td>
