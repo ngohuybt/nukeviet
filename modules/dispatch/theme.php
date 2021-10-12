@@ -18,7 +18,7 @@ if (!defined('NV_IS_MOD_CONGVAN')) die('Stop!!!');
  */
 function nv_theme_congvan_main($error, $array, $page_title, $base_url, $all_page, $per_page, $page, $type, $se, $to, $from, $from_signer, $content, $code)
 {
-    global $global_config, $module_name, $module_file, $module_data, $lang_module, $module_config, $module_info, $op, $arr_type, $db;
+    global $global_config, $module_name, $module_file, $module_data, $lang_module, $module_config, $module_info, $op, $receipt_sentid, $arr_type, $db;
 
     $xtpl = new XTemplate($op . ".tpl", NV_ROOTDIR . "/themes/" . $module_info['template'] . "/modules/" . $module_info['module_theme']);
     $xtpl->assign('MODULE_LINK', NV_BASE_SITEURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&" . NV_NAME_VARIABLE . "=" . $module_name);
@@ -31,7 +31,7 @@ function nv_theme_congvan_main($error, $array, $page_title, $base_url, $all_page
     $xtpl->assign('NV_ASSETS_DIR', NV_ASSETS_DIR);
 
     $xtpl->assign('MODULE_NAME', $module_name);
-    $xtpl->assign('SE_LINK', NV_BASE_SITEURL . "index.php?" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=" . $op . "&amp;se=1");
+    $xtpl->assign('SE_LINK', NV_BASE_SITEURL . "index.php?" . NV_NAME_VARIABLE . "=" . $module_name . "&amp;" . NV_OP_VARIABLE . "=" . $op . "&amp;se=1&amp;receipt_sentid=" . $receipt_sentid);
 
     $listtypes = array(
         array(
@@ -60,6 +60,8 @@ function nv_theme_congvan_main($error, $array, $page_title, $base_url, $all_page
             $xtpl->parse('main.type');
         }
     }
+//     alert($receipt_sentid);
+    $xtpl->assign('receipt_sentid', $receipt_sentid);
 
     if ($type != 0) {
         $sql = "SELECT * FROM `" . NV_PREFIXLANG . "_" . $module_data . "_type` WHERE `parentid`=" . $type;

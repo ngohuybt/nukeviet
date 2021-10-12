@@ -1,16 +1,10 @@
 <!-- BEGIN: submenu -->
 <ul class="dropdown-menu">
     <!-- BEGIN: loop -->
-
+    <li
+        <!-- BEGIN: submenu -->class="dropdown-submenu"<!-- END: submenu -->> <!-- BEGIN: icon --> <img src="{SUBMENU.icon}" alt="{SUBMENU.note}" />&nbsp; <!-- END: icon --> <a href="{SUBMENU.link}" title="{SUBMENU.note}"{SUBMENU.target}>{SUBMENU.title_trim}</a> <!-- BEGIN: item --> {SUB} <!-- END: item -->
+    </li>
     <!-- END: loop -->
-	
-	<li>
-	<a href="https://rescovn.site/vi/dispatch/?receipt_sentid=0" title="Quản lý công văn đến">Quản lý công văn đến</a>
-	</li>
-	<li>
-	<a href="https://rescovn.site/vi/dispatch/?receipt_sentid=1" title="Quản lý công văn đi">Quản lý công văn đi</a>
-	</li>
-	
 </ul>
 <!-- END: submenu -->
 

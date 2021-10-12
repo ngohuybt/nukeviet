@@ -10,6 +10,12 @@
 
 if (!defined('NV_IS_MOD_CONGVAN')) die('Stop!!!');
 
+$receipt_sentid = $_GET["receipt_sentid"];
+// alert('-----------------');
+// function alert($msg) {
+//     echo "<script type='text/javascript'>alert('$msg');</script>";
+// }
+
 $page_title = $module_info['site_title'];
 $key_words = $module_info['keywords'];
 $se = $from = $to = $from_signer = 0;
@@ -18,13 +24,25 @@ $code = $content = '';
 
 $array = array();
 $error = '';
-$sql = "FROM " . NV_PREFIXLANG . "_" . $module_data . "_document WHERE id!=0";
+$sql = '';
+if ($receipt_sentid == null)
+{
+    $sql = "FROM " . NV_PREFIXLANG . "_" . $module_data . "_document WHERE id!=0 ";
+    
+}else {
+    $receipt_sentid = intVal($receipt_sentid);
+    $sql = "FROM " . NV_PREFIXLANG . "_" . $module_data . "_document WHERE id!=0 and receipt_sent = " . $receipt_sentid;
+}
 $base_url = NV_BASE_SITEURL . "index.php?" . NV_NAME_VARIABLE . "=" . $module_name;
 
 $listcats = nv_listcats(0);
 $listdes = nv_listdes(0);
 $listtypes = nv_listtypes($type);
 $page_title = $lang_module['table'];
+
+if ($nv_Request->isset_request("receipt_sentid", "get")) {
+    $receipt_sentid = $nv_Request->get_title('receipt_sentid', 'get', '');
+}
 
 if ($nv_Request->isset_request("se", "get")) {
     $page_title = $lang_module['list_se'];

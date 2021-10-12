@@ -13,6 +13,7 @@
 		<input type="hidden" name ='nv' value="{MODULE_NAME}">
 		<input type="hidden" name ='op' value="{OP}">
 		<input type="hidden" name ='se' value="1">
+		<input type="hidden" name ='receipt_sentid' value="{receipt_sentid}">
 		<table class="table table-striped table-bordered table-hover">
 			<tr>
 				<td> {LANG.type} </td>
