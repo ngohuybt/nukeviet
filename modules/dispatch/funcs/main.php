@@ -27,7 +27,7 @@ $error = '';
 $sql = '';
 if ($receipt_sentid == null)
 {
-    $sql = "FROM " . NV_PREFIXLANG . "_" . $module_data . "_document WHERE id!=0 ";
+    $sql = "FROM " . NV_PREFIXLANG . "_" . $module_data . "_document WHERE id!=0 and receipt_sent = 0";
     
 }else {
     $receipt_sentid = intVal($receipt_sentid);
@@ -41,7 +41,8 @@ $listtypes = nv_listtypes($type);
 $page_title = $lang_module['table'];
 
 if ($nv_Request->isset_request("receipt_sentid", "get")) {
-    $receipt_sentid = $nv_Request->get_title('receipt_sentid', 'get', '');
+//     $receipt_sentid = $nv_Request->get_title('receipt_sentid', 'get', '');
+    $receipt_sentid = $nv_Request->get_int('receipt_sentid', 'get', 0);
 }
 
 if ($nv_Request->isset_request("se", "get")) {
