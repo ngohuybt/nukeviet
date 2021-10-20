@@ -25,11 +25,12 @@
                 <div>
                     <hr />
                     <!-- BEGIN: adminlink -->
-                    <em class="fa fa-gears fa-lg">&nbsp;</em> <a href="{ADMIN_LINK}">{GO_ADMINPAGE}</a>
-                    <span class="defis">&nbsp;</span>
+                    <!-- huynnp -->
+                    <!-- em class="fa fa-gears fa-lg">&nbsp;</em> <a href="{ADMIN_LINK}">{GO_ADMINPAGE}</a -->
+                    <!-- span class="defis">&nbsp;</span -->
                     <!-- END: adminlink -->
                     <!-- BEGIN: sitelink -->
-                    <em class="fa fa-home fa-lg">&nbsp;</em> <a href="{SITE_LINK}">{GO_SITEPAGE}</a>
+                    <!-- em class="fa fa-home fa-lg">&nbsp;</em> <a href="{SITE_LINK}">{GO_SITEPAGE}</a -->
                     <!-- END: sitelink -->
                 </div>
             </div>

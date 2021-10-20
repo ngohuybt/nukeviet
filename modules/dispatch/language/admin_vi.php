@@ -64,7 +64,8 @@ $lang_module['de_err_exist'] = 'Lỗi: phòng ban này đã có';
 $lang_module['de_err_save'] = 'Lỗi: Vì một lý do nào đó mà dữ liệu không thể lưu lại được. Chúng tôi thành thật xin lỗi vì sự bất tiện này';
 $lang_module['de_err_update'] = 'Lỗi: Vì một lý do nào đó mà các thay đổi không thể cập nhạt được. Chúng tôi thành thật xin lỗi vì sự bất tiện này';
 
-$lang_module['add_document'] = 'Thêm công văn';
+$lang_module['add_document'] = 'Thêm công văn Đến';
+$lang_module['add_document_sent'] = 'Thêm công văn Đi';
 $lang_module['dis_com'] = 'Công văn đến';
 $lang_module['add_dis_com'] = 'Nhập công văn đến';
 $lang_module['dis_go'] = 'Công văn đi';

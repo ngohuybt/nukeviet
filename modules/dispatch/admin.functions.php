@@ -11,6 +11,7 @@
 if (!defined('NV_ADMIN') or !defined('NV_MAINFILE') or !defined('NV_IS_MODADMIN')) die('Stop!!!');
 
 $submenu['add_document'] = $lang_module['add_document'];
+$submenu['add_document_sent'] = $lang_module['add_document_sent'];
 $submenu['cat'] = $lang_module['cat'];
 $submenu['type'] = $lang_module['type'];
 $submenu['signer'] = $lang_module['signer'];
@@ -21,6 +22,7 @@ $allow_func = array(
     'departments',
     'cat',
     'add_document',
+    'add_document_sent',
     'signer',
     'type'
 );

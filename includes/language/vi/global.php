@@ -76,7 +76,8 @@ $lang_global['password_rule_nolimit'] = 'Mật khẩu phải từ %1$d đến %2
 $lang_global['securitycodeincorrect'] = 'Mã bảo mật không chính xác';
 $lang_global['securitycodeincorrect1'] = 'Chưa xác thực không phải là Robot, vui lòng xác thực lại';
 $lang_global['loginincorrect'] = 'Hệ thống không tìm thấy tài khoản nào phù hợp với thông tin khai báo của bạn. Có thể bạn đã khai báo sai Tên đăng nhập hoặc Mật khẩu truy cập';
-$lang_global['admin_loginsuccessfully'] = 'Bạn đã đăng nhập thành công. Bây giờ hệ thống sẽ chuyển bạn đến khu vực Quản trị của site';
+//$lang_global['admin_loginsuccessfully'] = 'Bạn đã đăng nhập thành công. Bây giờ hệ thống sẽ chuyển bạn đến khu vực Quản trị của site';
+$lang_global['admin_loginsuccessfully'] = 'Bạn đã đăng nhập thành công.';
 $lang_global['incorrect_password'] = 'Mật khẩu sai';
 $lang_global['userlogin_blocked'] = 'Bạn đã đăng nhập thất bại %s lần, hệ thống tạm khóa đăng nhập cho đến %s';
 

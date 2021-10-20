@@ -218,6 +218,20 @@ function nv_link(singer) {
 	}
 }
 
+//---------------------------------------
+function nv_link_sent(singer) {
+
+	var nv_timer = nv_settimeout_disable('from_signer_' + singer, 500);
+	var new_status = document.getElementById('from_signer_' + singer).options[document.getElementById('from_signer_' + singer).selectedIndex].value;
+
+	if (new_status != 0) {
+		$('#hienthi').show();
+		$.post(script_name + '?' + nv_name_variable + '=' + nv_module_name + '&' + nv_fc_variable + '=add_document_sent&nocache=' + new Date().getTime(), 'action=1&singer=' + new_status + '&num=' + nv_randomPassword(8), function(res) {
+			$('#hienthi').html( res );
+		});
+	}
+}
+
 //--------------------------
 
 function nv_clear_text() {
