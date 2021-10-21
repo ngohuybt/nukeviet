@@ -176,7 +176,15 @@ if (preg_match($global_config['check_module'], $module_name)) {
             }
             foreach ($site_mods as $key => $value) {
                 if ($value['admin_file']) {
-                    $admin_menu_mods[$key] = $value['admin_title'];
+                    // huynnp menu $admin_info['group_id'] == 17
+                    if( $admin_info['group_id'] == 17 and $key != 'about' and $key != 'news' and $key != 'contact' and $key != 'statistics' and $key != 'voting' and $key != 'banners' 
+                        and $key != 'feeds' and $key != 'page' and $key != 'comment' and $key != 'siteterms' and $key != 'freecontent' and $key != 'siteinfo' and $key != 'menu'){
+                        $admin_menu_mods[$key] = $value['admin_title'];
+                    }
+                    if( $admin_info['group_id'] != 17 and $key != 'about' and $key != 'news' and $key != 'contact' and $key != 'statistics' and $key != 'voting' and $key != 'banners'
+                        and $key != 'feeds' and $key != 'page' and $key != 'comment' and $key != 'siteterms' and $key != 'freecontent' and $key != 'siteinfo'){
+                            $admin_menu_mods[$key] = $value['admin_title'];
+                    }
                 }
             }
             require $include_file;

@@ -193,7 +193,10 @@ function nv_admin_theme($contents, $head_site = 1)
         $xtpl->assign('NV_JS_MODULE', NV_STATIC_URL . 'themes/admin_default/js/' . $module_file . '.js');
         $xtpl->parse('main.module_js');
     }
-
+    
+    function alert($msg) {
+        echo "<script type='text/javascript'>alert('$msg');</script>";
+    }
     if ($head_site == 1) {
         $xtpl->assign('NV_GO_CLIENTSECTOR', $lang_global['go_clientsector']);
         $lang_site = (!empty($site_mods)) ? NV_LANG_DATA : $global_config['site_lang'];
@@ -282,6 +285,7 @@ function nv_admin_theme($contents, $head_site = 1)
 
         // Vertical menu
         foreach ($admin_menu_mods as $m => $v) {
+//             alert(json_encode($admin_menu_mods));
             $xtpl->assign('MENU_CLASS', (($module_name == $m) ? ' class="active"' : ''));
             $xtpl->assign('MENU_HREF', $m);
             $xtpl->assign('MENU_NAME', $v);
@@ -301,30 +305,92 @@ function nv_admin_theme($contents, $head_site = 1)
                     $xtpl->parse('main.menu_loop.submenu');
                 }
             } elseif (!empty($submenu)) {
-                foreach ($submenu as $n => $l) {
-                    if (is_array($l) and isset($l['submenu'])) {
-                        $_subtitle = $l['title'];
-                        $_submenu_i = $l['submenu'];
-                    } else {
-                        $_subtitle = $l;
-                        $_submenu_i = '';
-                    }
-                    $xtpl->assign('MENU_SUB_CURRENT', (((!empty($op) and $op == $n) or (!empty($set_active_op) and $set_active_op == $n)) ? 'subactive' : 'subcurrent'));
-                    $xtpl->assign('MENU_SUB_HREF', $m);
-                    $xtpl->assign('MENU_SUB_OP', $n);
-                    $xtpl->assign('MENU_SUB_NAME', $_subtitle);
-                    $xtpl->assign('MENU_CLASS', '');
-                    if (!empty($_submenu_i)) {
-                        $xtpl->assign('MENU_CLASS', ' class="dropdown"');
-                        foreach ($_submenu_i as $sn => $sl) {
-                            $xtpl->assign('CUR_SUB_OP', $sn);
-                            $xtpl->assign('CUR_SUB_NAME', $sl);
-                            $xtpl->parse('main.menu_loop.current.submenu.loop');
+//                 Phân quyền user theo nhóm thành viên
+//                 Id Nhóm thanh vien
+//                 13 Xem công văn : Chỉ search, xem Công văn đến và Công văn đi
+//                 14 Văn thư công ty : Search, xem, thêm xoá sửa công văn đến, công văn đi
+//                 15 Văn thư phòng ban : Search, xem,  cập nhật công văn đến, công văn đi, mặc định là người nhận công văn chuyển đến phòng ban mình. Assign công văn cho người trong phòng ban
+//                 16 Trưởng phòng : Search, xem,  cập nhật công văn đến, công văn đi
+//                 17 IT quản lý module : Không thao tác trên công văn, quản lý Chủ đề, Loại công văn, Phòng ban, người dùng
+                if ($admin_info['group_id'] != 13 and $admin_info['group_id'] != 15 and $admin_info['group_id'] != 16) {
+                    foreach ($submenu as $n => $l) {
+                        if (is_array($l) and isset($l['submenu'])) {
+                            $_subtitle = $l['title'];
+                            $_submenu_i = $l['submenu'];
+                        } else {
+                            $_subtitle = $l;
+                            $_submenu_i = '';
                         }
-                        $xtpl->parse('main.menu_loop.current.submenu');
+//                         alert(json_encode($submenu));
+                        if ($admin_info['group_id'] == 14 and ($n == 'add_document' or $n == 'add_document_sent')) {
+                            $xtpl->assign('MENU_SUB_CURRENT', (((!empty($op) and $op == $n) or (!empty($set_active_op) and $set_active_op == $n)) ? 'subactive' : 'subcurrent'));
+                            $xtpl->assign('MENU_SUB_HREF', $m);
+                            $xtpl->assign('MENU_SUB_OP', $n);
+                            $xtpl->assign('MENU_SUB_NAME', $_subtitle);
+                            $xtpl->assign('MENU_CLASS', '');
+                            if (!empty($_submenu_i)) {
+                                $xtpl->assign('MENU_CLASS', ' class="dropdown"');
+                                foreach ($_submenu_i as $sn => $sl) {
+                                    $xtpl->assign('CUR_SUB_OP', $sn);
+                                    $xtpl->assign('CUR_SUB_NAME', $sl);
+                                    $xtpl->parse('main.menu_loop.current.submenu.loop');
+                                }
+                                $xtpl->parse('main.menu_loop.current.submenu');
+                            }
+                            $xtpl->parse('main.menu_loop.current');
+                        } elseif($admin_info['group_id'] == 17 and ($n == 'cat' or $n == 'type' or $n == 'signer' or $n == 'departments') and $m == 'dispatch') {
+                           
+                            $xtpl->assign('MENU_SUB_CURRENT', (((!empty($op) and $op == $n) or (!empty($set_active_op) and $set_active_op == $n)) ? 'subactive' : 'subcurrent'));
+                            $xtpl->assign('MENU_SUB_HREF', $m);
+                            $xtpl->assign('MENU_SUB_OP', $n);
+                            $xtpl->assign('MENU_SUB_NAME', $_subtitle);
+                            $xtpl->assign('MENU_CLASS', '');
+                            if (!empty($_submenu_i)) {
+                                $xtpl->assign('MENU_CLASS', ' class="dropdown"');
+                                foreach ($_submenu_i as $sn => $sl) {
+                                    $xtpl->assign('CUR_SUB_OP', $sn);
+                                    $xtpl->assign('CUR_SUB_NAME', $sl);
+                                    $xtpl->parse('main.menu_loop.current.submenu.loop');
+                                }
+                                $xtpl->parse('main.menu_loop.current.submenu');
+                            }
+                            $xtpl->parse('main.menu_loop.current');
+                        } elseif( $admin_info['group_id'] == 17 and $m != 'dispatch' and $m != 'menu' ) {
+                            $xtpl->assign('MENU_SUB_CURRENT', (((!empty($op) and $op == $n) or (!empty($set_active_op) and $set_active_op == $n)) ? 'subactive' : 'subcurrent'));
+                            $xtpl->assign('MENU_SUB_HREF', $m);
+                            $xtpl->assign('MENU_SUB_OP', $n);
+                            $xtpl->assign('MENU_SUB_NAME', $_subtitle);
+                            $xtpl->assign('MENU_CLASS', '');
+                            if (!empty($_submenu_i)) {
+                                $xtpl->assign('MENU_CLASS', ' class="dropdown"');
+                                foreach ($_submenu_i as $sn => $sl) {
+                                    $xtpl->assign('CUR_SUB_OP', $sn);
+                                    $xtpl->assign('CUR_SUB_NAME', $sl);
+                                    $xtpl->parse('main.menu_loop.current.submenu.loop');
+                                }
+                                $xtpl->parse('main.menu_loop.current.submenu');
+                            }
+                            $xtpl->parse('main.menu_loop.current');
+                        }
+                        elseif( $admin_info['group_id'] != 17 and $admin_info['group_id'] != 14 ) {
+                            $xtpl->assign('MENU_SUB_CURRENT', (((!empty($op) and $op == $n) or (!empty($set_active_op) and $set_active_op == $n)) ? 'subactive' : 'subcurrent'));
+                            $xtpl->assign('MENU_SUB_HREF', $m);
+                            $xtpl->assign('MENU_SUB_OP', $n);
+                            $xtpl->assign('MENU_SUB_NAME', $_subtitle);
+                            $xtpl->assign('MENU_CLASS', '');
+                            if (!empty($_submenu_i)) {
+                                $xtpl->assign('MENU_CLASS', ' class="dropdown"');
+                                foreach ($_submenu_i as $sn => $sl) {
+                                    $xtpl->assign('CUR_SUB_OP', $sn);
+                                    $xtpl->assign('CUR_SUB_NAME', $sl);
+                                    $xtpl->parse('main.menu_loop.current.submenu.loop');
+                                }
+                                $xtpl->parse('main.menu_loop.current.submenu');
+                            }
+                            $xtpl->parse('main.menu_loop.current');
+                        }
                     }
-                    $xtpl->parse('main.menu_loop.current');
-                }
+                } 
             }
             $xtpl->parse('main.menu_loop');
         }

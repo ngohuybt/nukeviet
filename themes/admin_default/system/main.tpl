@@ -108,7 +108,7 @@
         <aside id="left-menu">
             <div id="bg-left-menu" style="padding-right: 20px;padding-left: 4px;width: 200px;">
                 <ul class="nav nav-pills nav-stacked text-color">
-                    <!-- BEGIN: menu_loop -->
+                    <!-- BEGIN: huynnp menu_loop -->
                         <li {MENU_CLASS}>
                             <a href="{NV_BASE_ADMINURL}index.php?{NV_LANG_VARIABLE}={NV_LANG_DATA}&amp;{NV_NAME_VARIABLE}={MENU_HREF}">{MENU_NAME}</a>
                             <!-- BEGIN: submenu -->
