@@ -10,7 +10,7 @@
 
 if (!defined('NV_IS_FILE_ADMIN'))
     die('Stop!!!');
-
+   
 //Delete link
 if ($nv_Request->isset_request('del', 'post')) {
     if (!defined('NV_IS_AJAX'))
@@ -36,6 +36,7 @@ if ($nv_Request->isset_request('del', 'post')) {
 
 $edit = $error = '';
 $from = $to = $type = 0;
+$receipt_sentid = $_GET["receipt_sentid"];
 
 $sql = "FROM " . NV_PREFIXLANG . "_" . $module_data . "_document WHERE id!=0";
 $base_url = NV_BASE_ADMINURL . "index.php?" . NV_LANG_VARIABLE . "=" . NV_LANG_DATA . "&" . NV_NAME_VARIABLE . "=" . $module_name;
@@ -74,7 +75,6 @@ if ($nv_Request->isset_request("type", "get")) {
     $type = $nv_Request->get_int('type', 'get', 0);
     if (!$type or !isset($listtypes[$type])) {
         nv_redirect_location(NV_BASE_ADMINURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&' . NV_NAME_VARIABLE . '=' . $module_name);
-
     }
 
     $page_title = sprintf($lang_module['cv_list_by_type'], $listtypes[$type]['title']);
@@ -105,6 +105,15 @@ if ($nv_Request->isset_request("signer", "get")) {
     $page_title = sprintf($lang_module['product_list_by_signer'], $listsinger[$signer]['name']);
     $sql .= " AND from_signer=" . $signer;
     $base_url .= "&amp;signer=" . $signer;
+}
+
+if ($nv_Request->isset_request("receipt_sentid", "get,post")) {
+    $receipt_sentid = $nv_Request->get_int('receipt_sentid', 'get,post', 0);
+    $sql .= " AND receipt_sent = " . $receipt_sentid;
+    $base_url .= "&amp;receipt_sentid=" . $receipt_sentid;
+}else{
+        $sql .= " AND receipt_sent = 0";
+        $base_url .= "&amp;receipt_sentid=0";
 }
 
 if ($nv_Request->isset_request("from", "get")) {
@@ -260,7 +269,7 @@ if (!empty($generate_page)) {
     $xtpl->assign('GENERATE_PAGE', $generate_page);
     $xtpl->parse('main.generate_page');
 }
-
+$xtpl->assign('receipt_sentid', $receipt_sentid);
 $xtpl->parse('main');
 $contents = $xtpl->text('main');
 

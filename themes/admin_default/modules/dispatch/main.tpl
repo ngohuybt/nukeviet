@@ -12,6 +12,7 @@
     <form class="form-inline" action="{FORM_ACTION}" method="get">
         <input type="hidden" name ='nv' value={MODULE_NAME}>
         <input type="hidden" name ='op' value={OP}>
+        <input type="hidden" name ='receipt_sentid' value="{receipt_sentid}">
         {LANG.dis} &nbsp;&nbsp;
         <select class="form-control" name="type">
             <!-- BEGIN: typeid -->
@@ -25,6 +26,14 @@
         <input class="btn btn-primary" type="submit" value="{GLANG.search}" name="timkiem">
     </form>
 </div>
+
+<div class="collapse navbar-collapse" id="menu-site-default">
+        <ul class="nav navbar-nav">
+            <li class="active" role="presentation"><a class="dropdown-toggle" href="{NV_BASE_ADMINURL}index.php?language=vi&nv=dispatch&receipt_sentid=0" role="button" aria-expanded="false" rel="Quản Lý Công Văn Đến">  Quản Lý Công Văn Đến</a> </li>
+            <li role="presentation"><a class="dropdown-toggle" href="{NV_BASE_ADMINURL}index.php?language=vi&nv=dispatch&receipt_sentid=1" role="button" aria-expanded="false" title="Quản Lý Công Văn Đi">  Quản Lý Công Văn Đi</a> </li>
+        </ul>
+</div>
+    
 <div class="table-responsive">
     <table class="table table-striped table-bordered table-hover">
         <caption>{TABLE_CAPTION}</caption>
